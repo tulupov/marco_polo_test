@@ -1,0 +1,47 @@
+### AUTHORIZE
+POST http://localhost:3000/oauth/authorize
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+response_type=code&client_id=product&state=yJUIZGlqptL6MvrKYhWaCxyGrbN1-RsoF7ANskiXtUw%3D&redirect_uri=http://google.com&username=Test&password=12345
+
+### GET TOKENS
+POST http://localhost:3000/oauth/token
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+client_id=product&client_secret=product_secret&grant_type=authorization_code&code=88a7de359e0978e410816cbf2027f1bd9c7737e7
+
+### REFRESH TOKENS
+POST http://localhost:3000/oauth/token
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+client_id=product&client_secret=product_secret&grant_type=refresh_token&refresh_token=688924b55188d914a75d270a24be286e8d501017
+
+### SIGN UP USER
+POST http://localhost:3000/oauth/user
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=Test&password=12345
+
+### SIGN UP CLIENT
+POST http://localhost:3000/oauth/client
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+client_id=product&client_secret=product_secret&redirect_uri=http%3A%2F%2Fgoogle.com
+
+### CHECK TOKENS
+GET http://localhost:3000/oauth/check
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTMwNzEzMTMyMjAsImNsaWVudF9pZCI6InByb2R1Y3QiLCJ1c2VyX2lkIjozLCJpYXQiOjE2MTMwNzEyODN9.mwy9SN_FNkJX2r6TjNtgoqV0m997YOfxMHKVj0N5TJEXwC-_qJTvRENpjh47MiKl4iPr38ZPlsM1db_gXUQh5_tSk623YpHAxIIKcwS92-DaUcmdsbhIbgTBwrQ0DvPyBurRMgwGV4LTMn5DiVv3_chq_EKlc_m16MZeWRUajdgF6hezMLIMPdRlFacRZTGA_OuJcKj3huvPcpr3fjvULCCITalteYceqrZeI34jVnlc-YpllCj-LtkWDeHsMyH1KEDiQEXLPHgs4qI8gaojmd69AHhQxcDhGQlbiBjThQeDQrE-ROGzfAYurnpYgXPkvbsUSdYe8XACbD1-S9hY4IyLofmol9vRf0qScv869h4peMCJclBd32G6_vmE46DEAfqwO_LvMTDoZpqC8ywQPGaKvArMlc0pwPfyB089-4F4wXIGzL4TiEaicS1ujwKJodY0D1SCn0jBJ2PV3mf-PN7PuaI3VEVI0oFQRuCOH_E0i51Gxu3Xr-jdRdbfaLOK7BgvhcjHzXqMNMTatcB4Bkbd48pzGy8CVZNGrOC4kvnINPQ4by5nht2wbH20xTwJiD9i5-SF-j6wvZJAh_w6pVLKMHlsh2tBYFHSUk83UF9ii0_HNdzdYZyAoCMY5eF6v1ZamVvgw_Z_GSLEW19aEeEr4lvZr_gZZGqOLw82YNA
+
+###

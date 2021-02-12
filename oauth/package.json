@@ -1,0 +1,36 @@
+{
+  "name": "jwt-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Icyr/jwt-auth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Icyr/jwt-auth/issues"
+  },
+  "homepage": "https://github.com/Icyr/jwt-auth#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-oauth-server": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg-promise": "^10.9.2",
+    "rsa-pem-to-jwk": "^1.1.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1"
+  }
+}

@@ -1,0 +1,78 @@
+version: '3'
+services:
+  oauthdb:
+    container_name: oauthdb
+    restart: always
+    build:
+      context: ./db
+      dockerfile: oauth-Dockerfile
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-jwtauth}
+      - POSTGRES_DB=${POSTGRES_DB:-jwtauth}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-privet123}
+      - POSTGRES_HOST_AUTH_METHOD=md5
+    command:
+      - "postgres"
+      - "-c"
+      - "listen_addresses=*"
+    ports:
+      - "${OAUTH_DB_PORT:-15432}:5432"
+
+  productdb:
+    container_name: productdb
+    restart: always
+    build:
+      context: ./db
+      dockerfile: product-Dockerfile
+    environment:
+      - POSTGRES_USER=${P_POSTGRES_USER:-product}
+      - POSTGRES_DB=${P_POSTGRES_DB:-product}
+      - POSTGRES_PASSWORD=${P_POSTGRES_PASSWORD:-privet123}
+      - POSTGRES_HOST_AUTH_METHOD=md5
+    command:
+      - "postgres"
+      - "-c"
+      - "listen_addresses=*"
+    ports:
+      - "${PRODUCT_DB_PORT:-14432}:5432"
+
+  oauth:
+    network_mode: host
+    build:
+      context: ./oauth
+      args:
+        DATABASE_URL: ${OAUTH_DATABASE_URL:-postgresql://jwtauth:privet123@oauthdb:15432/jwtauth}
+    environment:
+      - DATABASE_URL=${OAUTH_DATABASE_URL:-postgresql://jwtauth:privet123@127.0.0.1:15432/jwtauth}
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    container_name: oauth
+    depends_on:
+      - oauthdb
+
+  vue-ui:
+    network_mode: host
+    build:
+      context: ./web
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    container_name: web
+    depends_on:
+      - oauth
+      - backend
+
+  backend:
+    network_mode: host
+    build:
+      context: ./backend
+    expose:
+        - "9090"
+    ports:
+      - "9090:9090"
+    container_name: backend
+    depends_on:
+      - productdb

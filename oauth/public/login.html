@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class='container'>
+<h1>Login</h1>
+<form action='/oauth/authorize' method="post">
+    <input type="hidden" name="client_id">
+    <input type="hidden" name="redirect_uri">
+    <input type="hidden" name="response_type">
+    <input type="hidden" name="grant_type">
+    <input type="hidden" name="state">
+    <div class="form-group">
+        <label>Username</label>
+        <input class='form-control auth' type="text" name="username" value="max">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input class='form-control auth' type="password" name="password" value="aaaa1111" />
+    </div>
+    <input type='submit' class='btn btn-success' />
+</form>
+<script>
+  ;(function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    ['client_id','redirect_uri', 'response_type', 'grant_type', 'state'].forEach(type => {
+      const input = document.body.querySelector(`input[name=${type}]`);
+      input.value = urlParams.get(type);
+    });
+    const error = urlParams.get('success') === 'false';
+    if(error) {
+      document.body.querySelectorAll('.auth').forEach(el => el.classList.add('is-invalid'))
+    }
+  }());
+</script>
+</body>
+</html>
